@@ -6,6 +6,12 @@ namespace HelloWorld {
             Console.WriteLine("My name is " + name + ", My age is " + age);
             return true;
         }
+        static int PlusMethod(int x, int y) {
+            return x + y;
+        }
+        static double PlusMethod(double x , double y) {
+            return x + y;
+        }
         static void Main(string[] args) {
             // 註解
             // This is a comment
@@ -153,11 +159,17 @@ namespace HelloWorld {
             Console.WriteLine("x1: " + x1);
 
             // 方法
-            MyMethod(name, n1);
+            MyMethod(name, n1); // 傳遞參數
             MyMethod(); // 預設參數
             MyMethod(name: "alex", age: 36); // 關鍵字參數
             bool resultBoolean = MyMethod(); // 回傳值
             Console.WriteLine(resultBoolean);
+
+            // 方法多載
+            int myNum1 = PlusMethod(8, 5);
+            double myNum2 = PlusMethod(4.3, 6.26);
+            Console.WriteLine("int: " + myNum1);
+            Console.WriteLine("double: " + myNum2);
         }
     }
 }
