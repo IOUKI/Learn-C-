@@ -2,6 +2,10 @@
 
 namespace HelloWorld {
     class Program {
+        static bool MyMethod(string name = "harry", int age = 20) {
+            Console.WriteLine("My name is " + name + ", My age is " + age);
+            return true;
+        }
         static void Main(string[] args) {
             // 註解
             // This is a comment
@@ -143,6 +147,17 @@ namespace HelloWorld {
                 Console.WriteLine(i);
             }
 
+            // 多維陣列
+            int[,] myNumbers = {{1, 2, 3, 4}, {5, 6, 7, 8}};
+            int x1 = myNumbers[1, 2];
+            Console.WriteLine("x1: " + x1);
+
+            // 方法
+            MyMethod(name, n1);
+            MyMethod(); // 預設參數
+            MyMethod(name: "alex", age: 36); // 關鍵字參數
+            bool resultBoolean = MyMethod(); // 回傳值
+            Console.WriteLine(resultBoolean);
         }
     }
 }
