@@ -1,4 +1,92 @@
 ﻿using System;
+using System.IO;
+
+class Person {
+    public string name;
+    private string Name // 屬性(取得和設定)
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    int age; // 預設情況下，類別的成員是私有的
+
+    public Person(string initName, int initAge) {
+        name = initName;
+        age = initAge;
+    }
+
+    public void SayHi() {
+        Console.WriteLine("Hi, my name is " + name + " and I am " + age + " years old.");
+    }
+
+    public void PrintName() {
+        Console.WriteLine(Name);
+    }
+}
+
+class Taiwanese : Person {
+    public Taiwanese(string initName, int initAge) : base(initName, initAge) {
+        name = initName;
+        // age = initAge; // age is private
+    }
+
+    // 覆寫方法
+    public new void SayHi() {
+        Console.WriteLine("你好，我叫" + name);
+    }
+
+}
+
+// 抽象類別
+abstract class Animal {
+    public abstract void animalSound();
+    public void sleep() {
+        Console.WriteLine("Zzz");
+    }
+}
+
+// 繼承抽象類別
+class Pig : Animal {
+    // 實作抽象方法
+    public override void animalSound() {
+        Console.WriteLine("The pig says: wee wee");
+    }
+}
+
+interface IAnimal {
+    void animalSound(); // interface method (does not have a body)
+}
+
+class Dog : IAnimal {
+    public void animalSound() {
+        Console.WriteLine("The dog says: bow wow");
+    }
+}
+
+interface IFirstInterface {
+    void myMethod(); // interface method
+}
+
+interface ISecondInterface {
+    void myOtherMethod(); // interface method
+}
+
+// 多種介面
+class DemoClass : IFirstInterface, ISecondInterface {
+    public void myMethod() {
+        Console.WriteLine("Some text..");
+    }
+    public void myOtherMethod() {
+        Console.WriteLine("Some other text...");
+    }
+}
+
+enum Level {
+    Low = 99,
+    Medium,
+    High
+}
 
 namespace HelloWorld {
     class Program {
@@ -170,6 +258,57 @@ namespace HelloWorld {
             double myNum2 = PlusMethod(4.3, 6.26);
             Console.WriteLine("int: " + myNum1);
             Console.WriteLine("double: " + myNum2);
+
+            // 類別
+            Car myCar = new Car();
+            myCar.fullThrottle();
+
+            Person p1 = new Person(initName: "John", initAge: 25);  // 呼叫建構子
+            p1.SayHi();
+            Console.WriteLine(p1.name);
+            p1.name = "Alex";
+            Console.WriteLine(p1.name);
+            p1.PrintName();
+
+            Taiwanese t1 = new Taiwanese(initName: "豪豪", initAge: 25);
+            t1.SayHi();
+
+            // 抽象類別
+            Pig myPig = new Pig();
+            myPig.animalSound();
+            myPig.sleep();
+
+            // 介面
+            Dog myDog = new Dog();
+            myDog.animalSound();
+
+            // 多種介面
+            DemoClass myObj = new DemoClass();
+            myObj.myMethod();
+            myObj.myOtherMethod();
+
+            // 列舉
+            Level myVar = Level.Medium;
+            Console.WriteLine(myVar);
+            Console.WriteLine((int) Level.Low);
+            Console.WriteLine((int) Level.Medium);
+
+            // 檔案
+            string writeText = "Hello World!";  // Create a text string
+            File.WriteAllText("filename.txt", writeText);  // Create a file and write the content of writeText to it
+
+            string readText = File.ReadAllText("filename.txt");  // Read the contents of the file
+            Console.WriteLine(readText);  // Output the content
+
+            // 例外處理
+            try {
+                int[] myNumbers2 = {1, 2, 3};
+                Console.WriteLine(myNumbers2[10]);
+            } catch (Exception e) {
+                Console.WriteLine("Error: " + e.Message);
+            } finally {
+                Console.WriteLine("The 'try catch' is finished.");
+            }
         }
     }
 }
